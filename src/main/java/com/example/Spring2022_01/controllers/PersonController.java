@@ -1,6 +1,5 @@
 package com.example.Spring2022_01.controllers;
 
-import com.example.Spring2022_01.dao.PersonDAO;
 import com.example.Spring2022_01.domain.Person;
 import com.example.Spring2022_01.repositories.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +18,11 @@ public class PersonController {
         this.personRepo = personRepo;
     }
 
-    //private final PersonDAO personDAO;
-
-//    public PersonController(PersonDAO personDAO) {
-//        this.personDAO = personDAO;
-//    }
-
     @GetMapping()
     public String index(Model model) {
 
 
-        model.addAttribute("sarakstsPeople", personRepo.findAll());
+        model.addAttribute("sarakstsPeople", personRepo.findAll()); // jāieliek mappings
         //model.addAttribute("sarakstsPeople", personDAO.index());
 
         return "people/index"; // norādam kādā lapā rādīsies atrastais
