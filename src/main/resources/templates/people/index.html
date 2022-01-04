@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Visi cilveki</title>
+</head>
+<body>
+
+<!--  th:each ir cikla paveids.
+   person ir mainīgais
+   sarakstsPeople nāk no controller
+   th:href - nozīmē ka tas būs links, un tālāk aprkastām kā veidosies links (people un konkrētā ieraksta id
+   th:text - tekss kas parādīsies un šajā gadījumā ar ${ atzīmējam to teksu ar kuru aizvietos "kautKas
+   -->
+<div th:each ="person : ${sarakstsPeople}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName() + ' ' + person.getSurname}">kautKads</a>
+
+</div>
+<!-- links pāriešanai uz jauna ieraksta veidošanu-->
+<br/> <!-- tukša rinda-->
+<hr/>  <!-- līnija-->
+
+<a href="/people/new">Pievienot jaunu cilveku</a>
+
+
+
+<!-- otrs variants-->
+
+<br/> <!-- tukša rinda-->
+<hr/>  <!-- līnija-->
+
+<table>
+    <tr>
+        <th>Vārds</th>
+        <th>Uzvārds</th>
+    </tr>
+    <tr th:each="person : ${sarakstsPeople}">
+        <td> <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">kautKads</a></td>
+        <td th:text="${person.surname}">Uzvards</td>
+    </tr>
+</table>
+
+<!-- links pāriešanai uz jauna ieraksta veidošanu-->
+<br/> <!-- tukša rinda-->
+<hr/>  <!-- līnija-->
+
+<a href="/people/new">Pievienot jaunu cilveku</a>
+
+
+</body>
+</html>

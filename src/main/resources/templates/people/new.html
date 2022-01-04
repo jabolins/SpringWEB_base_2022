@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jauna persona</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/people}" th:object="${vienaPersonaNew}">
+    <label for="name">Ievadiet vardu:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+
+    <label for="surname">Ievadiet uzvardu:</label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <br/>
+
+    <input type="submit" value="Izveidot">
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cilveks</title>
+</head>
+<body>
+
+<p th:text="${vienaPerson.get().getName()}">VALUE</p>
+<p th:text="${vienaPerson.get().getSurname()}">VALUE</p>
+<p th:text="${vienaPerson.get().getId()}">VALUE</p>
+
+<!-- links uz labosanu-->
+<a th:href="@{/people/{id}/edit(id=${vienaPerson.get().getId()})}">Labot</a>
+
+<!-- tagad būs poga dzēšanai un tam vajag formu!-->
+<form th:method="DELETE" th:action="@{/people/{id}(id=${vienaPerson.get().getId()})}">
+    <input type="submit" value="Izdzest"/>
+</form>
+</body>
+</html>
