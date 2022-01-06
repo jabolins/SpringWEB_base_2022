@@ -1,16 +1,13 @@
 package com.example.Spring2022_01.controllers;
 
-import com.example.Spring2022_01.domain.Person;
 import com.example.Spring2022_01.mappers.Mapper;
 import com.example.Spring2022_01.repositories.PersonRepo;
-import com.example.Spring2022_01.ui.PersonWeb;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.Spring2022_01.ui.PersonUI;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -31,7 +28,7 @@ public class PersonController {
     @GetMapping()
     public String index(Model model) {
 
-        List<PersonWeb> allWebPersons= new ArrayList<>();
+        List<PersonUI> allWebPersons = new ArrayList<>();
         personRepo.findAll().forEach(person -> allWebPersons.add(mapper.mapFromSQL(person)));
         model.addAttribute("sarakstsPeople", allWebPersons);
 
@@ -40,7 +37,7 @@ public class PersonController {
 
     @GetMapping("/{id}") // liekam figūriekavās jo tas ir mainīgais
     public String show(@PathVariable("id") int id, Model model) {
-        PersonWeb personWeb = mapper.mapFromSQL(personRepo.findById(Long.valueOf(id)).get());
+        PersonUI personWeb = mapper.mapFromSQL(personRepo.findById(Long.valueOf(id)).get());
         model.addAttribute("vienaPerson", personWeb);
         return "people/show";
 
@@ -48,12 +45,12 @@ public class PersonController {
 
     @GetMapping("/new")
     public String newPerson(Model model) {
-        model.addAttribute("vienaPersonaNew", new PersonWeb());
+        model.addAttribute("vienaPersonaNew", new PersonUI());
         return "people/new";
     }
 
     @PostMapping
-    public String create(@ModelAttribute("atklaVienaPersona") PersonWeb personWeb) { // @ModelAttribute nodrošina:
+    public String create(@ModelAttribute("atklaVienaPersona") PersonUI personWeb) { // @ModelAttribute nodrošina:
         // jauna objekta izveidi (Person new person),
         // lauku aizpildīšanu (setName (name), setSurname (surname), utt
         // pievieno šo objektu modeli (model.addAttribute( "person", person)
@@ -65,7 +62,7 @@ public class PersonController {
     // lai paraditu labojamo personu pēc id
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        PersonWeb personWeb = mapper.mapFromSQL(personRepo.findById(Long.valueOf(id)).get());
+        PersonUI personWeb = mapper.mapFromSQL(personRepo.findById(Long.valueOf(id)).get());
         model.addAttribute("labojamaisPerson", personWeb);
         return "people/edit";
     }
@@ -74,11 +71,12 @@ public class PersonController {
     // Bet to vēl vajag apstrādāt Spring pusē- jāizveido aplication.Properties sekojoss lauks:
     // spring.mvc.hiddenmethod.filter.enabled=true
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("labojamaisPerson") PersonWeb personWeb, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("labojamaisPerson") PersonUI personWeb, @PathVariable("id") int id) {
         personRepo.save(mapper.mapFromPersonWeb(personWeb));
         return "redirect:/people";
     }
 
+    //tā kā dzēsīsim ārā no datu bāzes tad te mapper nav vajadzīgs
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         long longId = id;

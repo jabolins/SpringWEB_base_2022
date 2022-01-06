@@ -1,33 +1,32 @@
 package com.example.Spring2022_01.ui;
 
-import org.springframework.stereotype.Component;
-
-public class PersonWeb {
+public class PersonUI {
     private long id;
     private String name;
     private String surname;
+    private int age;
+    private String eMail;
 
-    public PersonWeb(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
-
-
-    public PersonWeb(long id, String name, String surname) {
+    public PersonUI(long id, String name, String surname, int age, String eMail) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.age = age;
+        this.eMail = eMail;
     }
 
-    public PersonWeb() {
+    public PersonUI(String name, String surname, int age, String eMail) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.eMail = eMail;
+    }
+
+    public PersonUI() {
     }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -46,12 +45,30 @@ public class PersonWeb {
         this.surname = surname;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEMail() {
+        return eMail;
+    }
+
+    public void setEMail(String eMail) {
+        this.eMail = eMail;
+    }
+
     @Override
     public String toString() {
-        return "PersonWeb{" +
+        return "PersonUI{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", eMail='" + eMail + '\'' +
                 '}';
     }
 }

@@ -18,16 +18,26 @@ public class Person {
     @Column(name="surname")
     private String surname;
 
+    @Column( name= "age")
+    private int age;
 
-    public Person(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
+    @Column (name= "eMail")
+    private String eMail;
 
-    public Person(long id, String name, String surname) {
+
+    public Person(long id, String name, String surname, int age, String eMail) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.age = age;
+        this.eMail = eMail;
+    }
+
+    public Person(String name, String surname, int age, String eMail) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.eMail = eMail;
     }
 
     public Person() {
@@ -37,9 +47,6 @@ public class Person {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -57,12 +64,30 @@ public class Person {
         this.surname = surname;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", eMail='" + eMail + '\'' +
                 '}';
     }
 }
