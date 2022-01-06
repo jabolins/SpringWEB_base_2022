@@ -2,7 +2,9 @@ package com.example.Spring2022_01.mappers;
 
 import com.example.Spring2022_01.domain.Person;
 import com.example.Spring2022_01.ui.PersonWeb;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Mapper {
     public Person mapFromPersonWeb(PersonWeb personWeb){
 

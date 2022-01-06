@@ -9,7 +9,7 @@
 <!-- tikai ar theymeleaf var izmantot zemāk esošo metodi PATCH. Standarta HTML atblasta tikai POST un GET.
  Mūsu gadījumā theymeleaf izveidos slēpto metodi _method kurā ieliks metodi PATCH un pēc tam ar filtra palīdzību to
   atradīs un realizēs-->
-<form th:method="PATCH" th:action="@{/people/{id}(id=${labojamaisPerson.get().getId()})}" th:object="${labojamaisPerson}">
+<form th:method="PATCH" th:action="@{/people/{id}(id=${labojamaisPerson.getId()})}" th:object="${labojamaisPerson}">
     <label for="name">Ievadiet vardu:</label>
     <input type="text" th:field="*{name}" id="name"/>
 

@@ -1,5 +1,7 @@
 package com.example.Spring2022_01.ui;
 
+import org.springframework.stereotype.Component;
+
 public class PersonWeb {
     private long id;
     private String name;
@@ -42,5 +44,14 @@ public class PersonWeb {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonWeb{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }
